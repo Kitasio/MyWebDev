@@ -49,3 +49,25 @@ class LeadViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = LeadSerializer
 ```
+
+### Create urls
+In leads.py
+```
+from rest_framework import routers
+from .api import LeadViewSet
+
+router = routers.DefaultRouter()
+router.register('api/leads', LeadViewSet, 'leads')
+
+urlpatterns = router.urls
+```
+And in main urls.py
+```
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('', include('leads.urls')),
+]
+
+```
